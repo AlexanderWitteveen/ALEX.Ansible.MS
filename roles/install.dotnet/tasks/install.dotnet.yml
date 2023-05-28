@@ -1,9 +1,0 @@
----
-
-- name: Install a list of packages
-  apt:
-    name: "{{ packages }}"
-    state: present
-  vars:
-    packages:
-    - apt-transport-https
