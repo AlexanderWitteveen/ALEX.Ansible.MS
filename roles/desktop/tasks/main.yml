@@ -1,0 +1,6 @@
+---
+
+    - ansible.builtin.include_role:
+        name: alex.ms.installfonts
+      vars:
+        args_msfonts_ipaddress: "{{ args_desktop_ipaddress }}"

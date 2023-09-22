@@ -1,3 +1,23 @@
 ---
 
-- include_tasks: installdotnet.yml
+- name: Install a .deb package from the internet
+  ansible.builtin.apt:
+    deb: https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb
+  vars:
+    ansible_connection: ssh
+    ansible_host: "{{ args_dotnet_ipaddress }}"
+  become: true
+
+
+- name: Install a list of packages
+  apt:
+    name: "{{ packages }}"
+    state: present
+    update_cache: yes
+  vars:
+    packages:
+    - dotnet-sdk-7.0
+    ansible_connection: ssh
+    ansible_host: "{{ args_dotnet_ipaddress }}"
+  become: true
+

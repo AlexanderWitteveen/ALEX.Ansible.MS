@@ -1,0 +1,20 @@
+---
+
+- name: "Playbook: Install Microsoft stuff"
+  hosts: "{{ args_host }}"
+  gather_facts: false
+
+  vars_files:
+    - /etc/ansible/inventory/vars.yml
+
+  tasks:
+    - ansible.builtin.include_role:
+        name: alex.ms.server
+      vars:
+        args_server_ipaddress: "{{ prop_ipaddress }}"
+
+    - ansible.builtin.include_role:
+        name: alex.ms.desktop
+      vars:
+        args_desktop_ipaddress: "{{ prop_ipaddress }}"
+
