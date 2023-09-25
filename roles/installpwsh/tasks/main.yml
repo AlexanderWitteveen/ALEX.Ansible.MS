@@ -1,48 +1,9 @@
 ---
 
-#- name: Install a list of packages
-#  apt:
-#    name: "{{ packages }}"
-#    state: present
-#    update_cache: yes
-#  vars:
-#    packages:
-#    - wget 
-#    - apt-transport-https 
-#    - software-properties-common
-#    ansible_connection: ssh
-#    ansible_host: "{{ args_pwsh_ipaddress }}"
-#  become: true
-
-
-#- name: Download dotnet deb
-#  ansible.builtin.get_url:
-#    url: https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
-#    dest: ~/packages-microsoft-prod.deb
-#  vars:
-#    ansible_connection: ssh
-#    ansible_host: "{{ args_pwsh_ipaddress }}"
-#  become: true
-
-
 - name: Install a .deb package from the internet
   ansible.builtin.apt:
     deb: https://github.com/PowerShell/PowerShell/releases/download/v7.3.7/powershell_7.3.7-1.deb_amd64.deb
   vars:
     ansible_connection: ssh
-    ansible_host: "{{ args_pwsh_ipaddress }}"
+    ansible_host: "{{ prop_ipaddress }}"
   become: true
-
-#- name: Install a list of packages
-#  apt:
-#    name: "{{ packages }}"
-#    state: present
-#    update_cache: yes
-#  vars:
-#    packages:
-#    - powershell
-#    ansible_connection: ssh
-#    ansible_host: "{{ args_pwsh_ipaddress }}"
-#  become: true
-
-

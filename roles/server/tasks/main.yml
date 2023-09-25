@@ -2,10 +2,6 @@
 
     - ansible.builtin.include_role:
         name: alex.ms.installdotnet
-      vars:
-        args_dotnet_ipaddress: "{{ args_server_ipaddress }}"
 
     - ansible.builtin.include_role:
         name: alex.ms.installpwsh
-      vars:
-        args_pwsh_ipaddress: "{{ args_server_ipaddress }}"
