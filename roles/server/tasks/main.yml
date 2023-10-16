@@ -1,7 +1,7 @@
 ---
 
-    - ansible.builtin.include_role:
-        name: alex.ms.installdotnet
+- ansible.builtin.include_role:
+    name: alex.ms.installdotnet
 
-    - ansible.builtin.include_role:
-        name: alex.ms.installpwsh
+- ansible.builtin.include_role:
+    name: alex.ms.installpwsh

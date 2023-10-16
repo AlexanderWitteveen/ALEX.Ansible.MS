@@ -1,8 +1,28 @@
 ---
 
-- name: Install a .deb package from the internet
-  ansible.builtin.apt:
-    deb: https://github.com/PowerShell/PowerShell/releases/download/v7.3.7/powershell_7.3.7-1.deb_amd64.deb
+- name: Install script x64
+  shell: |
+    curl -L -o /tmp/powershell.tar.gz https://github.com/PowerShell/PowerShell/releases/download/v7.3.8/powershell-7.3.8-linux-x64.tar.gz
+    mkdir -p /opt/microsoft/powershell/7
+    tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell/7
+    chmod +x /opt/microsoft/powershell/7/pwsh
+    rm -f /usr/bin/pwsh
+    ln -s /opt/microsoft/powershell/7/pwsh /usr/bin/pwsh
+  when: 'prop_arch == "a64"'
+  vars:
+    ansible_connection: ssh
+    ansible_host: "{{ prop_ipaddress }}"
+  become: true
+
+- name: Install script a64
+  shell: |
+    curl -L -o /tmp/powershell.tar.gz https://github.com/PowerShell/PowerShell/releases/download/v7.3.8/powershell-7.3.8-linux-arm64.tar.gz
+    mkdir -p /opt/microsoft/powershell/7
+    tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell/7
+    chmod +x /opt/microsoft/powershell/7/pwsh
+    rm -f /usr/bin/pwsh
+    ln -s /opt/microsoft/powershell/7/pwsh /usr/bin/pwsh
+  when: 'prop_arch == "a64"'
   vars:
     ansible_connection: ssh
     ansible_host: "{{ prop_ipaddress }}"
